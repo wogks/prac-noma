@@ -107,12 +107,15 @@ class App extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
+              //아이템이 오버플로우 됐을떄 그 부분에 어떤걸 할젓인지
+              clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                   color: const Color(0xFF1F2123),
                   borderRadius: BorderRadius.circular(25)),
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,17 +135,31 @@ class App extends StatelessWidget {
                           children: [
                             const Text(
                               '6 428',
-                              style: TextStyle(color: Colors.white,fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                             const SizedBox(width: 5),
-                            Text('EUR',
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white.withOpacity(0.8)
-                            ),),
+                            Text(
+                              'EUR',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white.withOpacity(0.8)),
+                            ),
                           ],
                         )
                       ],
+                    ),
+                    //아이콘 크기만 커지고 부모위젯은 안커짐, 트랜스폼으로 위치 조절
+                    Transform.scale( 
+                      scale: 2.2,
+                      child: Transform.translate(
+                        offset: const Offset(8, 15),
+                        child: const Icon(
+                        Icons.euro_rounded,
+                        color: Colors.white,
+                        size: 88,
+                                          ),
+                      ),
                     )
                   ],
                 ),
